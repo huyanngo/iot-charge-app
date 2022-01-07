@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/large_size"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".LoginFragment">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/iot_charger"
+        android:layout_margin="@dimen/medium_size"
+        app:layout_constraintBottom_toTopOf="@id/cbAdmin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="@dimen/large_text"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/edtAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corner_border"
+        android:layout_margin="@dimen/medium_size"
+        android:hint="@string/your_account"
+        android:autofillHints="@string/your_account"
+        android:minHeight="@dimen/xl_size"
+        android:inputType="textPersonName"
+        android:paddingStart="@dimen/small_size"
+        android:paddingEnd="@dimen/small_size"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+        android:id="@+id/edtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/medium_size"
+        android:hint="@string/your_password"
+        android:autofillHints="@string/your_password"
+        android:background="@drawable/corner_border"
+        android:paddingStart="@dimen/small_size"
+        android:paddingEnd="@dimen/small_size"
+        android:inputType="textPassword"
+        android:minHeight="@dimen/xl_size"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtAccount" />
+
+    <CheckBox
+        android:id="@+id/cbAdmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/medium_size"
+        android:minHeight="@dimen/xl_size"
+        android:text="@string/admin_or_not"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/edtAccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corner_background_gray"
+        android:padding="@dimen/small_size"
+        android:text="@string/login_as_client"
+        android:layout_margin="@dimen/medium_size"
+        app:layout_constraintTop_toBottomOf="@id/edtPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

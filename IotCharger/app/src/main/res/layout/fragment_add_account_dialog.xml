@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/small_size"
+    tools:context=".AddAccountDialogFragment">
+
+    <EditText
+        android:id="@+id/edtAddAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/medium_size"
+        android:autofillHints="@string/your_account"
+        android:background="@drawable/corner_border"
+        android:hint="@string/your_account"
+        android:inputType="textPersonName"
+        android:minHeight="@dimen/xl_size"
+        android:paddingStart="@dimen/small_size"
+        android:paddingEnd="@dimen/small_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAddAccountTitle" />
+
+    <EditText
+        android:id="@+id/edtAddPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/medium_size"
+        android:autofillHints="@string/your_password"
+        android:background="@drawable/corner_border"
+        android:hint="@string/your_password"
+        android:inputType="textPassword"
+        android:minHeight="@dimen/xl_size"
+        android:paddingStart="@dimen/small_size"
+        android:paddingEnd="@dimen/small_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtAddAccount" />
+
+    <TextView
+        android:id="@+id/tvAddAccountTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/medium_size"
+        android:text="@string/add_account"
+        android:textSize="@dimen/large_text"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnAddAccToDtb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/xl_size"
+        android:background="@drawable/corner_background_gray"
+        android:padding="@dimen/small_size"
+        android:text="@string/add_to_database"
+        app:layout_constraintEnd_toStartOf="@id/btnCancel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtAddPassword" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/xl_size"
+        android:background="@drawable/corner_background_gray"
+        android:padding="@dimen/small_size"
+        android:text="@string/cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnAddAccToDtb"
+        app:layout_constraintTop_toBottomOf="@id/edtAddPassword" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

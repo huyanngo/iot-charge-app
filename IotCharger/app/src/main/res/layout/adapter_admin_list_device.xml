@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corner_border"
+    android:layout_margin="@dimen/small_size"
+    android:padding="@dimen/small_size"
+    android:layout_marginTop="@dimen/large_size">
+
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_size"
+        android:text="@string/device"
+        android:textSize="@dimen/small_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_size"
+        android:text="@string/status"
+        android:textSize="@dimen/small_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+    <TextView
+        android:id="@+id/tvSeverCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_size"
+        android:text="@string/server_code"
+        android:textSize="@dimen/small_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvStatus" />
+
+    <TextView
+        android:id="@+id/tvClientCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_size"
+        android:text="@string/client_code"
+        android:textSize="@dimen/small_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSeverCode" />
+
+
+    <TextView
+        android:id="@+id/tvNameFirebase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/small_text"
+        app:layout_constraintBottom_toBottomOf="@id/tvName"
+        app:layout_constraintTop_toTopOf="@id/tvName"
+        app:layout_constraintStart_toEndOf="@id/guideline"/>
+
+    <TextView
+        android:id="@+id/tvStatFirebase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/small_text"
+        app:layout_constraintBottom_toBottomOf="@id/tvStatus"
+        app:layout_constraintTop_toTopOf="@id/tvStatus"
+        app:layout_constraintStart_toEndOf="@id/guideline" />
+
+    <TextView
+        android:id="@+id/tvSeverCodeFirebase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/small_text"
+        app:layout_constraintBottom_toBottomOf="@id/tvSeverCode"
+        app:layout_constraintTop_toTopOf="@id/tvSeverCode"
+        app:layout_constraintStart_toEndOf="@id/guideline"/>
+
+
+    <TextView
+        android:id="@+id/tvClientCodeFirebase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/small_text"
+        app:layout_constraintBottom_toBottomOf="@id/tvClientCode"
+        app:layout_constraintTop_toTopOf="@id/tvClientCode"
+        app:layout_constraintStart_toEndOf="@id/guideline"/>
+
+    <Button
+        android:id="@+id/btnGenerate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corner_background_gray"
+        android:padding="@dimen/small_size"
+        android:layout_marginTop="@dimen/medium_size"
+        android:text="@string/generate_random"
+        app:layout_constraintEnd_toStartOf="@id/btnOn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvClientCode" />
+
+    <Button
+        android:id="@+id/btnOn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/turn_on"
+        android:background="@drawable/corner_background_gray"
+        android:padding="@dimen/small_size"
+        app:layout_constraintBottom_toBottomOf="@id/btnGenerate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnGenerate"
+        app:layout_constraintTop_toTopOf="@id/btnGenerate" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.35" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

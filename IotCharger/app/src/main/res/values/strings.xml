@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">IotCharger</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="device">Device:</string>
+    <string name="status">Status:</string>
+    <string name="server_code">Server Code:</string>
+    <string name="client_code">Client Code:</string>
+    <string name="turn_on">Turn On</string>
+    <string name="administrator">Administrator</string>
+    <string name="admin_or_not">Are you an administrator?</string>
+    <string name="your_password">Your Password</string>
+    <string name="your_account">Your Account</string>
+    <string name="iot_charger">IoT Charger</string>
+    <string name="device_list">Device List</string>
+    <string name="login_as_admin">Login as an Admin</string>
+    <string name="login_as_client">Login as a Client</string>
+    <string name="generate_random">Generate Random</string>
+    <string name="add_account">Add Account</string>
+    <string name="log_out">Log Out</string>
+    <string name="add_device">Add Device</string>
+    <string name="add_to_database">Add to database</string>
+    <string name="cancel">Cancel</string>
+    <string name="enter_the_device_name_numberid">Enter the device name (numberID):</string>
+    <string name="insert_number_here">Insert number here</string>
+    <string name="connect">Connect</string>
+    <string name="return_to_main">Return</string>
+</resources>

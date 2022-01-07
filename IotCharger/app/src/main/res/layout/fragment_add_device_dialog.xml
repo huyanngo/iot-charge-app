@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/small_size"
+    tools:context=".AddDeviceDialogFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/tvAddDeviceTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/medium_size"
+        android:text="@string/add_device"
+        android:textSize="@dimen/large_text"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnAddDeviceToDtb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_size"
+        android:background="@drawable/corner_background_gray"
+        android:padding="@dimen/small_size"
+        android:text="@string/add_to_database"
+        app:layout_constraintEnd_toStartOf="@id/btnCancel2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtNumberDevice" />
+
+    <Button
+        android:id="@+id/btnCancel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_size"
+        android:background="@drawable/corner_background_gray"
+        android:padding="@dimen/small_size"
+        android:text="@string/cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnAddDeviceToDtb"
+        app:layout_constraintTop_toBottomOf="@id/edtNumberDevice" />
+
+    <TextView
+        android:id="@+id/tvAddDevice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_size"
+        android:text="@string/enter_the_device_name_numberid"
+        android:textSize="@dimen/small_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAddDeviceTitle" />
+
+    <EditText
+        android:id="@+id/edtNumberDevice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/large_size"
+        android:background="@drawable/corner_border"
+        android:inputType="number"
+        android:hint="@string/insert_number_here"
+        android:autofillHints="@string/insert_number_here"
+        android:minHeight="@dimen/xl_size"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAddDevice" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/corner_border"
+    android:layout_margin="@dimen/large_size"
+    android:padding="@dimen/small_size"
+    android:layout_marginTop="@dimen/large_size">
+
+    <TextView
+        android:id="@+id/tvUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_size"
+        android:text="@string/device"
+        android:textSize="@dimen/small_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvUserStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_size"
+        android:text="@string/status"
+        android:textSize="@dimen/small_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvUserName" />
+
+    <Button
+        android:id="@+id/btnConnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/connect"
+        android:layout_marginTop="@dimen/medium_size"
+        app:layout_constraintTop_toBottomOf="@id/tvUserStatus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvUserNameFirebase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/small_text"
+        app:layout_constraintBottom_toBottomOf="@id/tvUserName"
+        app:layout_constraintTop_toTopOf="@id/tvUserName"
+        app:layout_constraintStart_toEndOf="@id/userGuideline"/>
+
+    <TextView
+        android:id="@+id/tvUserStatFirebase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/small_text"
+        app:layout_constraintBottom_toBottomOf="@id/tvUserStatus"
+        app:layout_constraintTop_toTopOf="@id/tvUserStatus"
+        app:layout_constraintStart_toEndOf="@id/userGuideline" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/userGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.35"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

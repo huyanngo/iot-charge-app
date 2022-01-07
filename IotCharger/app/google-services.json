@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1041498104377",
+    "project_id": "iotcharger-f97bc",
+    "storage_bucket": "iotcharger-f97bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041498104377:android:e7d988e2872f6d080f63e8",
+        "android_client_info": {
+          "package_name": "com.example.gst.trainingcourse.iotcharger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1041498104377-e8vfrt8711md5ct6s5ujc5gt94m4jb1t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZ3ub5cUW37vsuAi6mET-Boy-8nomkAJc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1041498104377-e8vfrt8711md5ct6s5ujc5gt94m4jb1t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
