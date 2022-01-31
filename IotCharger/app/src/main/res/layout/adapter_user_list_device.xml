@@ -35,6 +35,7 @@
         android:layout_height="wrap_content"
         android:text="@string/connect"
         android:layout_marginTop="@dimen/medium_size"
+        android:background="@drawable/corner_background_gray"
         app:layout_constraintTop_toBottomOf="@id/tvUserStatus"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

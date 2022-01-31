@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ConnectFillFragment">
+
+
+    <TextView
+        android:id="@+id/tvConnectTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/connect"
+        android:textSize="@dimen/large_text"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvDeviceName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnConnectCharge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_size"
+        android:background="@drawable/corner_background_gray"
+        android:padding="@dimen/small_size"
+        android:text="@string/connect"
+        app:layout_constraintEnd_toStartOf="@id/btnCancelConnect"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtInsertCode" />
+
+    <Button
+        android:id="@+id/btnCancelConnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_size"
+        android:background="@drawable/corner_background_gray"
+        android:padding="@dimen/small_size"
+        android:text="@string/cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnConnectCharge"
+        app:layout_constraintTop_toBottomOf="@id/edtInsertCode" />
+
+    <TextView
+        android:id="@+id/tvDeviceName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/medium_size"
+        android:text="@string/device_name"
+        android:textSize="@dimen/small_text"
+        app:layout_constraintBottom_toTopOf="@+id/tvInsertCode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvDeviceNameFirebase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_size"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDeviceName"
+        app:layout_constraintStart_toEndOf="@+id/tvDeviceName"
+        app:layout_constraintTop_toTopOf="@+id/tvDeviceName" />
+
+    <TextView
+        android:id="@+id/tvInsertCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/medium_size"
+        android:text="@string/enter_the_connecting_code_here"
+        android:textSize="@dimen/small_text"
+        app:layout_constraintBottom_toTopOf="@+id/edtInsertCode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/edtInsertCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/large_size"
+        android:background="@drawable/corner_border"
+        android:inputType="number"
+        android:hint="@string/insert_number_here"
+        android:autofillHints="@string/insert_number_here"
+        android:minHeight="@dimen/xl_size"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

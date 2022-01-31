@@ -14,6 +14,8 @@
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/IotCharger/app/src/main/res/layout/fragment_add_account_dialog.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/IotCharger/app/src/main/res/layout/fragment_add_device_dialog.xml" value="0.33" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/IotCharger/app/src/main/res/layout/fragment_admin_screen.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/IotCharger/app/src/main/res/layout/fragment_connect_dialog.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/IotCharger/app/src/main/res/layout/fragment_connect_fill.xml" value="0.25" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/IotCharger/app/src/main/res/layout/fragment_login.xml" value="0.33" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/IotCharger/app/src/main/res/layout/fragment_user_screen.xml" value="0.33" />
       </map>

@@ -34,5 +34,20 @@
         <action
             android:id="@+id/action_userScreenFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_connectFillFragment"
+            app:destination="@id/connectFillFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/connectFillFragment"
+        android:name="com.example.gst.trainingcourse.iotcharger.ConnectFillFragment"
+        android:label="fragment_connect_fill"
+        tools:layout="@layout/fragment_connect_fill" >
+        <action
+            android:id="@+id/action_connectFillFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+        <argument
+            android:name="name"
+            app:argType="string" />
     </fragment>
 </navigation>
