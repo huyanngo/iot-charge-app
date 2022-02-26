@@ -1,7 +1,6 @@
-package com.example.gst.trainingcourse.iotcharger
+package com.example.gst.trainingcourse.iotcharger.dialogfragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +8,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import com.example.gst.trainingcourse.iotcharger.`object`.Device
+import com.example.gst.trainingcourse.iotcharger.R
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-class AddDeviceDialogFragment(val dataList : ArrayList<Device>) : DialogFragment() {
+class AddDeviceDialogFragment(private val dataList : ArrayList<Device>) : DialogFragment() {
 
     private lateinit var database: DatabaseReference
 
@@ -33,14 +34,18 @@ class AddDeviceDialogFragment(val dataList : ArrayList<Device>) : DialogFragment
 
         btnAddToDtb.setOnClickListener {
             val name = edtDeviceName.text.toString()
-            val flag : Int = checkExist(name)
+            if (name.isNotEmpty()) {
+                val flag: Int = checkExist(name)
 
-            if (flag == 1){
-                pushDeviceToDtb(name)
-                dismiss()
+                if (flag == 1) {
+                    pushDeviceToDtb(name)
+                    dismiss()
+                } else {
+                    Toast.makeText(activity, "Device already exist", Toast.LENGTH_SHORT).show()
+                    edtDeviceName.text.clear()
+                }
             }else{
-                Toast.makeText(activity,"Device already exist",Toast.LENGTH_SHORT).show()
-                edtDeviceName.text.clear()
+                Toast.makeText(activity, "Please insert Device ID", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -51,7 +56,7 @@ class AddDeviceDialogFragment(val dataList : ArrayList<Device>) : DialogFragment
     }
 
     private fun pushDeviceToDtb(name: String) {
-        val device = Device(name,"off","null","null")
+        val device = Device(name,0,"null","null","null")
         database = FirebaseDatabase.getInstance().getReference("Device")
         database.child(name).setValue(device)
     }

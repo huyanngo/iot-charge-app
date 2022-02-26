@@ -1,5 +1,6 @@
-package com.example.gst.trainingcourse.iotcharger
+package com.example.gst.trainingcourse.iotcharger.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,6 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import com.example.gst.trainingcourse.iotcharger.adapter.AdapterUserCustom
+import com.example.gst.trainingcourse.iotcharger.`object`.Device
+import com.example.gst.trainingcourse.iotcharger.R
+import com.example.gst.trainingcourse.iotcharger.adapter.AdapterAdminCustom
 import com.example.gst.trainingcourse.iotcharger.databinding.FragmentUserScreenBinding
 import com.google.firebase.database.*
 
@@ -15,8 +20,12 @@ class UserFragment : Fragment() {
     private lateinit var database : DatabaseReference
     private lateinit var dataList : ArrayList<Device>
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        dataList = arrayListOf<Device>()
+        retrieveDeviceList()
     }
 
     override fun onCreateView(
@@ -30,14 +39,16 @@ class UserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        dataList = arrayListOf<Device>()
-        retrieveDeviceList()
+        Log.d("fm_lifecycle","#onViewCre")
 
         binding.ivReturn.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.action_userScreenFragment_to_loginFragment)
         }
     }
 
+    /**
+     * --------> Get dataList from the database
+     */
     private fun retrieveDeviceList() {
         database = FirebaseDatabase.getInstance().getReference("Device")
 
@@ -57,11 +68,8 @@ class UserFragment : Fragment() {
                 dataList.addAll(newArrayList)
 
                 binding.recyclerView.adapter = AdapterUserCustom(dataList,this@UserFragment)    //Get data from dataList to adapter
-                AdapterUserCustom(dataList,this@UserFragment).updateData(newArrayList)
+                AdapterAdminCustom(dataList, this@UserFragment).updateData(newArrayList)
                 newArrayList.clear()
-
-                Log.d("sizeAdapter", dataList.size.toString())
-
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -69,5 +77,44 @@ class UserFragment : Fragment() {
             }
 
         })
+        Log.d("sizeAdapter", dataList.size.toString())
+
+    }
+
+    override fun onResume() {
+        Log.d("fm_lifecycle","#onResume")
+
+        super.onResume()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Log.d("fm_lifecycle","#onAttach")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("fm_lifecycle","#onStart")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("fm_lifecycle","#onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("fm_lifecycle","#onStop")
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d("fm_lifecycle","#onDestroyView")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("fm_lifecycle","#onDestroy")
     }
 }

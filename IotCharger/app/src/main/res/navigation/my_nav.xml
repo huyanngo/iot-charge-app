@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.gst.trainingcourse.iotcharger.LoginFragment"
+        android:name="com.example.gst.trainingcourse.iotcharger.fragment.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/adminFragment"
-        android:name="com.example.gst.trainingcourse.iotcharger.AdminFragment"
+        android:name="com.example.gst.trainingcourse.iotcharger.fragment.AdminFragment"
         android:label="fragment_admin_screen"
         tools:layout="@layout/fragment_admin_screen" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/userFragment"
-        android:name="com.example.gst.trainingcourse.iotcharger.UserFragment"
+        android:name="com.example.gst.trainingcourse.iotcharger.fragment.UserFragment"
         android:label="fragment_user_screen"
         tools:layout="@layout/fragment_user_screen" >
         <action
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/connectFillFragment"
-        android:name="com.example.gst.trainingcourse.iotcharger.ConnectFillFragment"
+        android:name="com.example.gst.trainingcourse.iotcharger.fragment.ConnectFillFragment"
         android:label="fragment_connect_fill"
         tools:layout="@layout/fragment_connect_fill" >
         <action

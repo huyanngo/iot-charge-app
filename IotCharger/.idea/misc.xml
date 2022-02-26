@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/IotCharger/app/src/main/res/drawable/corner_background_gray.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/IotCharger/app/src/main/res/drawable/corner_background_green.xml" value="0.16822916666666668" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/IotCharger/app/src/main/res/drawable/corner_background_red.xml" value="0.16822916666666668" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/IotCharger/app/src/main/res/drawable/corner_border.xml" value="0.18645833333333334" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/IotCharger/app/src/main/res/drawable/ic_add_device.xml" value="0.21041666666666667" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/IotCharger/app/src/main/res/drawable/ic_return_arrow.xml" value="0.3098958333333333" />

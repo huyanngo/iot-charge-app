@@ -1,4 +1,4 @@
-package com.example.gst.trainingcourse.iotcharger
+package com.example.gst.trainingcourse.iotcharger.`object`
 
 import java.io.Serializable
 

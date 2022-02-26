@@ -1,5 +1,7 @@
-package com.example.gst.trainingcourse.iotcharger
+package com.example.gst.trainingcourse.iotcharger.adapter
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gst.trainingcourse.iotcharger.`object`.Device
+import com.example.gst.trainingcourse.iotcharger.R
+import com.example.gst.trainingcourse.iotcharger.fragment.UserFragmentDirections
 
 
 class AdapterUserCustom(
@@ -31,12 +36,31 @@ class AdapterUserCustom(
         return ViewHolderCustom(view)
     }
 
+    @SuppressLint("SetTextI18n", "ResourceAsColor")
     override fun onBindViewHolder(holder: ViewHolderCustom, position: Int) {
 
         holder.tvUserNameFirebase.text = dataList[position].name.toString()
-        holder.tvUserStatFirebase.text = dataList[position].status.toString()
+
+        if (Integer.parseInt(dataList[position].status.toString()) == 0) {
+            holder.tvUserStatFirebase.text = "OFF"
+        } else {
+            holder.tvUserStatFirebase.text = "ON"
+        }
 
         val device: Device = dataList[position]
+
+        if (device.status==1){
+
+            holder.btnConnect.setBackgroundResource(R.drawable.corner_background_green)
+            holder.btnConnect.setTextColor(Color.BLACK)
+
+        }else{
+
+            holder.btnConnect.setBackgroundResource(R.drawable.corner_background_red)
+            holder.btnConnect.setTextColor(Color.WHITE)
+
+        }
+
         holder.btnConnect.setOnClickListener {
             val devName = device.name
             if (devName != null) {

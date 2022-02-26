@@ -1,4 +1,4 @@
-package com.example.gst.trainingcourse.iotcharger
+package com.example.gst.trainingcourse.iotcharger.dialogfragment
 
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +9,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import com.example.gst.trainingcourse.iotcharger.`object`.Account
+import com.example.gst.trainingcourse.iotcharger.R
 import com.google.firebase.database.*
 
 class AddAccountDialogFragment : DialogFragment() {

@@ -27,4 +27,9 @@
     <string name="return_to_main">Return</string>
     <string name="enter_the_connecting_code_here">Enter the connecting code here:</string>
     <string name="device_name">Device Name:</string>
+    <string name="turn_off">Turn off</string>
+    <string name="connected">CONNECTED</string>
+    <string name="disconnected">DISCONNECTED</string>
+    <string name="off_txt">OFF</string>
+    <string name="on_txt">ON</string>
 </resources>

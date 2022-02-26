@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ConnectFillFragment">
+    tools:context=".fragment.ConnectFillFragment">
 
 
     <TextView
@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/connect"
-        android:textSize="@dimen/large_text"
+        android:textSize="@dimen/medium_large_text"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tvDeviceName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,6 +89,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvConnectedSign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/connected"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/btnConnectCharge"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="@dimen/large_text"
+        android:textColor="@color/green_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

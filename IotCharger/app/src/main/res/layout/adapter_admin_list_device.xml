@@ -105,7 +105,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/turn_on"
-        android:background="@drawable/corner_background_gray"
+        android:background="@drawable/corner_background_red"
+        android:textColor="@color/white"
+        android:padding="@dimen/small_size"
+        app:layout_constraintBottom_toBottomOf="@id/btnGenerate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnGenerate"
+        app:layout_constraintTop_toTopOf="@id/btnGenerate" />
+
+    <Button
+        android:id="@+id/btnOff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/turn_off"
+        android:visibility="invisible"
+        android:background="@drawable/corner_background_green"
         android:padding="@dimen/small_size"
         app:layout_constraintBottom_toBottomOf="@id/btnGenerate"
         app:layout_constraintEnd_toEndOf="parent"
