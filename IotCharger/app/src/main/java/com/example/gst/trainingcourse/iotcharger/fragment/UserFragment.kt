@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.Navigation
 import com.example.gst.trainingcourse.iotcharger.adapter.AdapterUserCustom
 import com.example.gst.trainingcourse.iotcharger.`object`.Device
@@ -40,6 +41,17 @@ class UserFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         Log.d("fm_lifecycle","#onViewCre")
+
+        /**
+         * Implement Navigation for back button, or else the phone will lost current location when pressed
+         */
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                Navigation.findNavController(view).navigate(R.id.action_userScreenFragment_to_loginFragment)
+            }
+
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
 
         binding.ivReturn.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.action_userScreenFragment_to_loginFragment)

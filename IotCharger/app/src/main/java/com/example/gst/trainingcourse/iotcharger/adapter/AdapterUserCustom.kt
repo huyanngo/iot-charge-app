@@ -53,11 +53,13 @@ class AdapterUserCustom(
 
             holder.btnConnect.setBackgroundResource(R.drawable.corner_background_green)
             holder.btnConnect.setTextColor(Color.BLACK)
+            holder.btnConnect.isEnabled = false
 
         }else{
 
             holder.btnConnect.setBackgroundResource(R.drawable.corner_background_red)
             holder.btnConnect.setTextColor(Color.WHITE)
+            holder.btnConnect.isEnabled = true
 
         }
 

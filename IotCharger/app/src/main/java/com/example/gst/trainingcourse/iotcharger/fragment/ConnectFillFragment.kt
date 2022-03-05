@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
@@ -28,7 +29,6 @@ class ConnectFillFragment : Fragment() {
 
     private lateinit var binding: FragmentConnectFillBinding
     private lateinit var database: DatabaseReference
-    private lateinit var dataList : ArrayList<Device>
 
     var deviceStatus : Long = 0
 
@@ -38,8 +38,6 @@ class ConnectFillFragment : Fragment() {
     private var mHandler : Handler = Handler(Looper.getMainLooper())
     private var runnable : Runnable? = null
     private var delay = 1000
-    private var delayOff = 5000
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,8 +54,27 @@ class ConnectFillFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         val nameReceived = args.name
         binding.tvDeviceNameFirebase.text = nameReceived
+
+
+        /**
+         * Implement Navigation for back button, or else the phone will lost current location when pressed
+         */
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                if (deviceStatus.toInt() == 0) {
+                    Navigation.findNavController(view)
+                        .navigate(R.id.action_connectFillFragment_to_userFragment)
+                }else{
+                    Toast.makeText(context,"Don't kill the App", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
 
         countDownCheck(nameReceived)
 
@@ -82,10 +99,6 @@ class ConnectFillFragment : Fragment() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-
-    }
 
     private fun countDownCheck(nameReceived : String){
         /**
@@ -97,6 +110,8 @@ class ConnectFillFragment : Fragment() {
             Log.d("#startHandler","${delay/1000} second has passed")
         }.also { runnable = it },delay.toLong())
     }
+
+
 
     /**
      * Check if status is ON yet
@@ -117,6 +132,7 @@ class ConnectFillFragment : Fragment() {
             Toast.makeText(context,"ERROR",Toast.LENGTH_SHORT).show()
 
         }
+
         if (deviceStatus.toInt() == 1){
             binding.apply {
 
@@ -125,6 +141,7 @@ class ConnectFillFragment : Fragment() {
                 tvConnectedSign.setTextColor(ContextCompat.getColor(context!!,R.color.green_light))
                 edtInsertCode.isEnabled = false
                 btnConnectCharge.isEnabled = false
+                btnCancelConnect.isEnabled = false
 
             }
         }else{
@@ -140,6 +157,11 @@ class ConnectFillFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+    }
+
     override fun onStop() {
         /**
          * Stop Handler countdown
@@ -148,5 +170,9 @@ class ConnectFillFragment : Fragment() {
         Log.d("#stopHandler","Stop countdown")
 
         super.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }

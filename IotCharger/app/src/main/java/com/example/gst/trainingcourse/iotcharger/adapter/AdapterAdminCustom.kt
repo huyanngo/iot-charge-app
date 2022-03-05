@@ -58,8 +58,10 @@ class AdapterAdminCustom(
 
         /**
          * When pressed the btnGenerate create a random number with 4 digits and push to database and turn off the charger
+         * Set all element to null and set dateOn to now
          */
         holder.btnGenerate.setOnClickListener {
+
             database = FirebaseDatabase.getInstance().getReference("Device")
 
             val randomNumber = (0..9999).random()
@@ -77,7 +79,15 @@ class AdapterAdminCustom(
             database.child(dataList[position].name.toString()).child("serverPass").setValue(tmp)
             database.child(dataList[position].name.toString()).child("clientPass").setValue("null")
             database.child(dataList[position].name.toString()).child("status").setValue(0)
-            database.child(dataList[position].name.toString()).child("dateOn").setValue("null")
+
+            /**
+             * Update time DateOn
+             */
+            val calendar = Calendar.getInstance();
+            val simpleDateFormat = SimpleDateFormat("HH:mm:ss")
+            val date = simpleDateFormat.format(calendar.time)
+
+            database.child(dataList[position].name.toString()).child("dateOn").setValue(date.toString())
             updateAdapter()
         }
 

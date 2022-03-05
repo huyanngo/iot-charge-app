@@ -1,5 +1,6 @@
 package com.example.gst.trainingcourse.iotcharger.fragment
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.gst.trainingcourse.iotcharger.R
@@ -42,6 +44,30 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val checkbox = binding.cbAdmin
+
+
+        /**
+         * When user pressed the back button, kill the app
+         */
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val builder = AlertDialog.Builder(activity!!)
+                builder.setTitle("Exit IoTCharge")
+                builder.setMessage("Do you want to exit the app?")
+                builder.setPositiveButton("Yes") { dialog, which ->
+                    System.exit(0)
+                }
+
+                builder.setNegativeButton("No") { dialog, which ->
+                    dialog.dismiss()
+                }
+
+                val alert = builder.create()
+                alert.show()
+            }
+
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
 
         checkbox.setOnClickListener {
             if (checkbox.isChecked) {
@@ -121,11 +147,12 @@ class LoginFragment : Fragment() {
             if (accountList.isEmpty()) {
 
                 retrieveData()
-                Toast.makeText(context,"Loading...",Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
 
             } else {
 
-                Toast.makeText(context,"Stand by. Please choose your mode",Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Stand by. Please choose your mode", Toast.LENGTH_SHORT)
+                    .show()
                 binding.btnLogin.isEnabled = true
                 binding.cbAdmin.isEnabled = true
                 /**

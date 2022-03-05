@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.gst.trainingcourse.iotcharger.R
@@ -32,7 +33,8 @@ class AdminFragment : Fragment() {
     private var runnable: Runnable? = null
     private var delay = 3000
 
-    private var timeLimit = 1                       //Time limit for each charger on
+    private var timeLimitOn = 1                       //Time limit for each charger on (Minutes)
+    private var timeLimitPass = 30                       //Time limit for each charger on (Seconds)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +54,18 @@ class AdminFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        /**
+         * Implement Navigation for back button, or else the phone will lost current location when pressed
+         */
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                Navigation.findNavController(view)
+                    .navigate(R.id.action_adminScreenFragment_to_loginFragment)
+            }
+
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
 
         binding.ctLogOut.setOnClickListener {
             Navigation.findNavController(view)
@@ -90,14 +104,14 @@ class AdminFragment : Fragment() {
 
 
     private fun retrieveDeviceList() {
-        Log.d("#retrieveDeviceList","Retrieved")
+        Log.d("#retrieveDeviceList", "Retrieved")
         database = FirebaseDatabase.getInstance().getReference("Device")
 
         val newArrayList = ArrayList<Device>()
 
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                Log.d("#retrieveListener","RetrieveListener")
+                Log.d("#retrieveListener", "RetrieveListener")
 
                 if (snapshot.exists()) {
                     for (deviceSnapshot in snapshot.children) {
@@ -165,7 +179,7 @@ class AdminFragment : Fragment() {
              * Check the Firebase dateOn. If currentDate - dateOn > acceptableTime Turnoff the charger
              */
             val dateOnFirebase = device.dateOn
-            if ( dateOnFirebase != "null") {
+            if (dateOnFirebase != "null") {
                 if (dateOnFirebase != null && dateOnFirebase.isNotEmpty()) {
                     //get time firebase
                     val dateOn: Date = convertStringToDate(dateOnFirebase)
@@ -178,18 +192,41 @@ class AdminFragment : Fragment() {
 
                     //Get difference between 2 date and get
                     val difference: Long = currentTime.time - dateOn.time
-                    val minutes = difference / 1000 / 60
+                    val seconds = difference / 1000
+                    val minutes = seconds / 60
 
-                    //If time difference passed timeLimit, shut down the charger
-                    if (minutes.toInt() > timeLimit - 1) {
-                        database = FirebaseDatabase.getInstance().getReference("Device")        //Initialize
+                    //If Charger on and time difference passed timeLimitOn, shut down the charger
+                    if (minutes.toInt() > timeLimitOn - 1 && device.status == 1) {
+                        database = FirebaseDatabase.getInstance()
+                            .getReference("Device")        //Initialize
 
                         database.child(device.name.toString()).child("status").setValue(0)
                         database.child(device.name.toString()).child("serverPass").setValue("null")
                         database.child(device.name.toString()).child("clientPass").setValue("null")
                         database.child(device.name.toString()).child("dateOn").setValue("null")
 
-                        Toast.makeText(context,"Device ${device.name} has been shutdown due to time exceed",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            context,
+                            "Device ${device.name} has been shutdown due to time exceed",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    //If Charger off and time difference passed timeLimitPass, disable the ServerCode
+                    else if (seconds.toInt() > timeLimitPass && device.status == 0) {
+
+                        database = FirebaseDatabase.getInstance()
+                            .getReference("Device")        //Initialize
+
+                        database.child(device.name.toString()).child("status").setValue(0)
+                        database.child(device.name.toString()).child("serverPass").setValue("null")
+                        database.child(device.name.toString()).child("clientPass").setValue("null")
+                        database.child(device.name.toString()).child("dateOn").setValue("null")
+
+                        Toast.makeText(
+                            context,
+                            "Password for device ${device.name} has been disable due to time exceed",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             }
