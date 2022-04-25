@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/android_theme_2"
     tools:context=".fragment.ConnectFillFragment">
 
 
@@ -12,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/connect"
+        android:textColor="@color/white"
         android:textSize="@dimen/medium_large_text"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tvDeviceName"
@@ -49,7 +51,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/medium_size"
         android:text="@string/device_name"
-        android:textSize="@dimen/small_text"
+        android:textColor="@color/white"
+        android:textSize="@dimen/medium_text"
         app:layout_constraintBottom_toTopOf="@+id/tvInsertCode"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -59,6 +62,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/small_size"
+        android:textColor="@color/white"
+        android:textSize="@dimen/medium_text"
         app:layout_constraintBottom_toBottomOf="@+id/tvDeviceName"
         app:layout_constraintStart_toEndOf="@+id/tvDeviceName"
         app:layout_constraintTop_toTopOf="@+id/tvDeviceName" />
@@ -69,7 +74,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/medium_size"
         android:text="@string/enter_the_connecting_code_here"
-        android:textSize="@dimen/small_text"
+        android:textColor="@color/white"
+        android:textSize="@dimen/medium_text"
         app:layout_constraintBottom_toTopOf="@+id/edtInsertCode"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -79,29 +85,38 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/large_size"
-        android:background="@drawable/corner_border"
-        android:inputType="number"
-        android:hint="@string/insert_number_here"
         android:autofillHints="@string/insert_number_here"
-        android:minHeight="@dimen/xl_size"
+        android:background="@drawable/corner_border"
         android:gravity="center"
+        android:hint="@string/insert_number_here"
+        android:inputType="number"
+        android:minHeight="@dimen/xl_size"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvConnectedSign"
+
+    <FrameLayout
+        android:id="@+id/frameBackgroundConnect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/connected"
+        android:alpha="0.9"
+        android:background="@drawable/corner_border"
+        android:padding="@dimen/small_size"
         android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@id/btnConnectCharge"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:textSize="@dimen/large_text"
-        android:textColor="@color/green_light"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnConnectCharge">
 
+        <TextView
+            android:id="@+id/tvConnectedSign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="2dp"
+            android:textColor="@color/green_light"
+            android:textSize="@dimen/large_text" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

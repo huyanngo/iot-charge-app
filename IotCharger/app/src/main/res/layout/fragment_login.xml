@@ -4,14 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/android_theme"
     android:padding="@dimen/large_size"
     tools:context=".fragment.LoginFragment">
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="-20dp"
+        android:layout_marginBottom="-20dp"
+        android:alpha="0.7"
+        android:background="@drawable/corner_border"
+        app:layout_constraintBottom_toBottomOf="@id/btnMap"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTitle">
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/medium_size"
+        android:elevation="2dp"
         android:text="@string/iot_charger"
         android:textSize="@dimen/large_text"
         android:textStyle="bold"
@@ -80,5 +96,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edtPassword" />
 
-
+    <Button
+        android:id="@+id/btnMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_size"
+        android:background="@drawable/corner_background_gray"
+        android:enabled="false"
+        android:text="@string/go_to_map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnLogin" />
 </androidx.constraintlayout.widget.ConstraintLayout>

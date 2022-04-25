@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.gst.trainingcourse.iotcharger.`object`.Device
+import com.example.gst.trainingcourse.iotcharger.model.Device
 import com.example.gst.trainingcourse.iotcharger.R
 import com.example.gst.trainingcourse.iotcharger.fragment.UserFragmentDirections
 

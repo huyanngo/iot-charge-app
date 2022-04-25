@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:alpha="0.9"
     android:padding="@dimen/small_size"
     tools:context=".dialogfragment.AddAccountDialogFragment">
 
@@ -56,6 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/xl_size"
+        android:layout_marginEnd="@dimen/small_size"
         android:background="@drawable/corner_background_gray"
         android:padding="@dimen/small_size"
         android:text="@string/add_to_database"
@@ -67,6 +69,7 @@
         android:id="@+id/btnCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_size"
         android:layout_marginTop="@dimen/xl_size"
         android:background="@drawable/corner_background_gray"
         android:padding="@dimen/small_size"

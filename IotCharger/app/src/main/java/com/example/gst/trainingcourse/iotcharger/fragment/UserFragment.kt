@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.navigation.Navigation
 import com.example.gst.trainingcourse.iotcharger.adapter.AdapterUserCustom
-import com.example.gst.trainingcourse.iotcharger.`object`.Device
+import com.example.gst.trainingcourse.iotcharger.model.Device
 import com.example.gst.trainingcourse.iotcharger.R
 import com.example.gst.trainingcourse.iotcharger.adapter.AdapterAdminCustom
 import com.example.gst.trainingcourse.iotcharger.databinding.FragmentUserScreenBinding

@@ -8,8 +8,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import com.example.gst.trainingcourse.iotcharger.`object`.Device
+import com.example.gst.trainingcourse.iotcharger.model.Device
 import com.example.gst.trainingcourse.iotcharger.R
+import com.example.gst.trainingcourse.iotcharger.constant.CONSTANT
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -41,10 +42,12 @@ class AddDeviceDialogFragment(private val dataList : ArrayList<Device>) : Dialog
                     pushDeviceToDtb(name)
                     dismiss()
                 } else {
-                    Toast.makeText(activity, "Device already exist", Toast.LENGTH_SHORT).show()
                     edtDeviceName.text.clear()
+                    edtDeviceName.error = CONSTANT.ERROR_DEVICE_NAME
+                    Toast.makeText(activity, "Device already exist", Toast.LENGTH_SHORT).show()
                 }
             }else{
+                edtDeviceName.error = CONSTANT.ERROR_DEVICE_NAME
                 Toast.makeText(activity, "Please insert Device ID", Toast.LENGTH_SHORT).show()
             }
         }

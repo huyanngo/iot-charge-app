@@ -14,7 +14,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.gst.trainingcourse.iotcharger.R
-import com.example.gst.trainingcourse.iotcharger.`object`.Device
+import com.example.gst.trainingcourse.iotcharger.model.Device
 import com.example.gst.trainingcourse.iotcharger.adapter.AdapterAdminCustom
 import com.example.gst.trainingcourse.iotcharger.databinding.FragmentAdminScreenBinding
 import com.example.gst.trainingcourse.iotcharger.dialogfragment.AddAccountDialogFragment
@@ -34,7 +34,7 @@ class AdminFragment : Fragment() {
     private var delay = 3000
 
     private var timeLimitOn = 1                       //Time limit for each charger on (Minutes)
-    private var timeLimitPass = 30                       //Time limit for each charger on (Seconds)
+    private var timeLimitPass = 30                       //Time limit for each password available (Seconds)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

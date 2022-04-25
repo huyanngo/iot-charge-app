@@ -1,5 +1,6 @@
 package com.example.gst.trainingcourse.iotcharger.dialogfragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,9 +10,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import com.example.gst.trainingcourse.iotcharger.`object`.Account
+import com.example.gst.trainingcourse.iotcharger.model.Account
 import com.example.gst.trainingcourse.iotcharger.R
+import com.example.gst.trainingcourse.iotcharger.constant.CONSTANT
 import com.google.firebase.database.*
+import java.math.BigInteger
+import java.security.MessageDigest
 
 class AddAccountDialogFragment : DialogFragment() {
 
@@ -41,14 +45,22 @@ class AddAccountDialogFragment : DialogFragment() {
             val password = edtAddPassword.text.toString()
 
             if (account.isEmpty() || password.isEmpty()){
+                edtAddAccount.error = CONSTANT.ERROR_ACCOUNT
+                edtAddPassword.error = CONSTANT.ERROR_PASSWORD
                 Toast.makeText(activity,"Please insert Account and Password",Toast.LENGTH_SHORT).show()
             }else{
                 val flag = checkExist(account)
 
+
                 if (flag == 1){
-                    pushToDatabase(account,password)      //Push data to database
+                    Toast.makeText(activity,"Account: $account \nPassword: $password",Toast.LENGTH_SHORT).show()
+
+                    val passHash = encryptPassword(password)
+
+                    pushToDatabase(account,passHash)      //Push data to database
                     dismiss()
                 }else{
+                    edtAddAccount.error = CONSTANT.ERROR_ACCOUNT
                     Toast.makeText(activity,"Account already exist",Toast.LENGTH_SHORT).show()
                 }
             }
@@ -100,4 +112,25 @@ class AddAccountDialogFragment : DialogFragment() {
         })
     }
 
+
+    /**
+     * Encrypt the input password and push to the database
+     */
+    @SuppressLint("GetInstance")
+    fun encryptPassword(password : String) : String{
+        var hashValue = ""
+        try {
+            val mMessageDigest = MessageDigest.getInstance("MD5")
+
+            mMessageDigest.update(password.toByteArray(),0,password.length)
+
+            hashValue = BigInteger(1, mMessageDigest.digest()).toString(16)
+
+            println(hashValue)
+        }catch (e: Exception){
+
+        }
+
+        return hashValue
+    }
 }

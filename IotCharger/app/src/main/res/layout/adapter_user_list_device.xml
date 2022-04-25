@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/corner_border"
     android:layout_margin="@dimen/large_size"
-    android:padding="@dimen/small_size"
-    android:layout_marginTop="@dimen/large_size">
+    android:layout_marginTop="@dimen/large_size"
+    android:alpha="0.9"
+    android:background="@drawable/corner_border"
+    android:padding="@dimen/small_size">
 
     <TextView
         android:id="@+id/tvUserName"
@@ -33,12 +33,12 @@
         android:id="@+id/btnConnect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/connect"
         android:layout_marginTop="@dimen/medium_size"
         android:background="@drawable/corner_background_gray"
-        app:layout_constraintTop_toBottomOf="@id/tvUserStatus"
+        android:text="@string/connect"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/tvUserStatus" />
 
     <TextView
         android:id="@+id/tvUserNameFirebase"
@@ -46,8 +46,8 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/small_text"
         app:layout_constraintBottom_toBottomOf="@id/tvUserName"
-        app:layout_constraintTop_toTopOf="@id/tvUserName"
-        app:layout_constraintStart_toEndOf="@id/userGuideline"/>
+        app:layout_constraintStart_toEndOf="@id/userGuideline"
+        app:layout_constraintTop_toTopOf="@id/tvUserName" />
 
     <TextView
         android:id="@+id/tvUserStatFirebase"
@@ -55,8 +55,8 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/small_text"
         app:layout_constraintBottom_toBottomOf="@id/tvUserStatus"
-        app:layout_constraintTop_toTopOf="@id/tvUserStatus"
-        app:layout_constraintStart_toEndOf="@id/userGuideline" />
+        app:layout_constraintStart_toEndOf="@id/userGuideline"
+        app:layout_constraintTop_toTopOf="@id/tvUserStatus" />
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -64,5 +64,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.35"/>
+        app:layout_constraintGuide_percent="0.35" />
 </androidx.constraintlayout.widget.ConstraintLayout>

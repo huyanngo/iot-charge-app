@@ -15,10 +15,11 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.gst.trainingcourse.iotcharger.R
-import com.example.gst.trainingcourse.iotcharger.`object`.Device
-import com.example.gst.trainingcourse.iotcharger.adapter.AdapterAdminCustom
+import com.example.gst.trainingcourse.iotcharger.constant.CONSTANT
 import com.example.gst.trainingcourse.iotcharger.databinding.FragmentConnectFillBinding
 import com.google.firebase.database.*
+import java.math.BigInteger
+import java.security.MessageDigest
 
 class ConnectFillFragment : Fragment() {
 
@@ -55,7 +56,6 @@ class ConnectFillFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
         val nameReceived = args.name
         binding.tvDeviceNameFirebase.text = nameReceived
 
@@ -85,10 +85,11 @@ class ConnectFillFragment : Fragment() {
             val insertedCode = binding.edtInsertCode.text.toString()
 
             if( insertedCode.isEmpty()){
+                binding.edtInsertCode.error = CONSTANT.ERROR_DEVICE_PASSWORD
                 Toast.makeText(context,"Please insert the Code",Toast.LENGTH_SHORT).show()
             }else{
                 database = FirebaseDatabase.getInstance().getReference("Device")
-                database.child(nameReceived).child("clientPass").setValue(insertedCode)
+                database.child(nameReceived).child("clientPass").setValue(encryptPassword(insertedCode))
 
                 binding.edtInsertCode.text.clear()
             }
@@ -136,7 +137,7 @@ class ConnectFillFragment : Fragment() {
         if (deviceStatus.toInt() == 1){
             binding.apply {
 
-                tvConnectedSign.visibility = View.VISIBLE
+                frameBackgroundConnect.visibility = View.VISIBLE
                 tvConnectedSign.setText(R.string.connected)
                 tvConnectedSign.setTextColor(ContextCompat.getColor(context!!,R.color.green_light))
                 edtInsertCode.isEnabled = false
@@ -147,11 +148,12 @@ class ConnectFillFragment : Fragment() {
         }else{
             binding.apply {
 
-                tvConnectedSign.visibility = View.VISIBLE
+                frameBackgroundConnect.visibility = View.VISIBLE
                 tvConnectedSign.setText(R.string.disconnected)
                 tvConnectedSign.setTextColor(ContextCompat.getColor(context!!,R.color.red_light))
                 edtInsertCode.isEnabled = true
                 btnConnectCharge.isEnabled = true
+                btnCancelConnect.isEnabled = true
 
             }
         }
@@ -174,5 +176,27 @@ class ConnectFillFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+    }
+
+
+    /**
+     * Encrypt the input password and push to the database
+     */
+    @SuppressLint("GetInstance")
+    fun encryptPassword(password : String) : String{
+        var hashValue = ""
+        try {
+            val mMessageDigest = MessageDigest.getInstance("MD5")
+
+            mMessageDigest.update(password.toByteArray(),0,password.length)
+
+            hashValue = BigInteger(1, mMessageDigest.digest()).toString(16)
+
+            println(hashValue)
+        }catch (e: Exception){
+
+        }
+
+        return hashValue
     }
 }

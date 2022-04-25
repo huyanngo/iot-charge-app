@@ -1,6 +1,8 @@
 package com.example.gst.trainingcourse.iotcharger.fragment
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -12,10 +14,14 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import com.example.gst.trainingcourse.iotcharger.MapsActivity
 import com.example.gst.trainingcourse.iotcharger.R
-import com.example.gst.trainingcourse.iotcharger.`object`.Account
+import com.example.gst.trainingcourse.iotcharger.constant.CONSTANT
 import com.example.gst.trainingcourse.iotcharger.databinding.FragmentLoginBinding
+import com.example.gst.trainingcourse.iotcharger.model.Account
 import com.google.firebase.database.*
+import java.math.BigInteger
+import java.security.MessageDigest
 
 class LoginFragment : Fragment() {
 
@@ -27,10 +33,6 @@ class LoginFragment : Fragment() {
     private var mHandler: Handler = Handler(Looper.getMainLooper())
     private var runnable: Runnable? = null
     private var delay = 2000
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +46,6 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val checkbox = binding.cbAdmin
-
 
         /**
          * When user pressed the back button, kill the app
@@ -73,12 +74,12 @@ class LoginFragment : Fragment() {
             if (checkbox.isChecked) {
                 binding.edtAccount.visibility = View.VISIBLE
                 binding.edtPassword.visibility = View.VISIBLE
-                binding.btnLogin.text = getString(R.string.login_as_admin)
+                binding.btnLogin.text = CONSTANT.LOGIN_ADMIN
 
             } else {
                 binding.edtAccount.visibility = View.INVISIBLE
                 binding.edtPassword.visibility = View.INVISIBLE
-                binding.btnLogin.text = getString(R.string.login_as_client)
+                binding.btnLogin.text = CONSTANT.LOGIN_CLIENT
             }
         }
 
@@ -88,26 +89,35 @@ class LoginFragment : Fragment() {
         binding.btnLogin.setOnClickListener {
             if (checkbox.isChecked) {
                 var valid = 0
-                Log.d("list", accountList.size.toString())
                 for (account in accountList) {
                     val acc = binding.edtAccount.text.toString()
                     val pass = binding.edtPassword.text.toString()
+                    val passHash = encryptPassword(pass)
 
-                    if (acc == account.account.toString() && pass == account.password.toString()) {
+                    if (acc == account.account.toString() && passHash == account.password.toString()) {
                         Navigation.findNavController(view)
                             .navigate(R.id.action_loginFragment_to_adminScreenFragment)
                         valid = 1
                     }
                 }
                 if (valid == 0) {
-                    Toast.makeText(activity, "Invalid", Toast.LENGTH_SHORT).show()
+                    binding.edtAccount.text.clear()
+                    binding.edtPassword.text.clear()
+                    binding.edtAccount.error = CONSTANT.ERROR_ACCOUNT
+                    binding.edtPassword.error = CONSTANT.ERROR_PASSWORD
                 }
-                binding.edtAccount.text.clear()
-                binding.edtPassword.text.clear()
             } else {
                 Navigation.findNavController(view)
                     .navigate(R.id.action_loginFragment_to_userScreenFragment)
             }
+        }
+
+        //Go to MapActivity onclick. Kill current Activity
+        binding.btnMap.setOnClickListener {
+            val intent = Intent(context, MapsActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            startActivity(intent)
+            activity?.finish()
         }
     }
 
@@ -147,19 +157,19 @@ class LoginFragment : Fragment() {
             if (accountList.isEmpty()) {
 
                 retrieveData()
-                Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, CONSTANT.LOADING, Toast.LENGTH_SHORT).show()
 
             } else {
 
-                Toast.makeText(context, "Stand by. Please choose your mode", Toast.LENGTH_SHORT)
+                Toast.makeText(context, CONSTANT.STAND_BY, Toast.LENGTH_SHORT)
                     .show()
                 binding.btnLogin.isEnabled = true
                 binding.cbAdmin.isEnabled = true
+                binding.btnMap.isEnabled = true
                 /**
                  * Stop Handler countdown
                  */
                 runnable?.let { mHandler.removeCallbacks(it) }
-                Log.d("#handlerCheck", "Found list")
             }
 
             Log.d("#handlerCheck", "${delay / 1000} second has passed")
@@ -168,7 +178,32 @@ class LoginFragment : Fragment() {
     }
 
     override fun onStop() {
+        /**
+         * Stop Handler countdown
+         */
+        runnable?.let { mHandler.removeCallbacks(it) }
+
         super.onStop()
-        Log.d("LoginCheckStop", "Stop")
+    }
+
+    /**
+     * Encrypt the input password and push to the database
+     */
+    @SuppressLint("GetInstance")
+    fun encryptPassword(password: String): String {
+        var hashValue = ""
+        try {
+            val mMessageDigest = MessageDigest.getInstance("MD5")
+
+            mMessageDigest.update(password.toByteArray(), 0, password.length)
+
+            hashValue = BigInteger(1, mMessageDigest.digest()).toString(16)
+
+            println(hashValue)
+        } catch (e: Exception) {
+
+        }
+
+        return hashValue
     }
 }

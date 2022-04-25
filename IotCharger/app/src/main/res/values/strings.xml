@@ -32,4 +32,6 @@
     <string name="disconnected">DISCONNECTED</string>
     <string name="off_txt">OFF</string>
     <string name="on_txt">ON</string>
+    <string name="go_to_map">Go to map</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

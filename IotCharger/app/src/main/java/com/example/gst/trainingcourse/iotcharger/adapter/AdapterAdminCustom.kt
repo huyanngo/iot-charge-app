@@ -10,9 +10,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gst.trainingcourse.iotcharger.R
-import com.example.gst.trainingcourse.iotcharger.`object`.Device
+import com.example.gst.trainingcourse.iotcharger.model.Device
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.math.BigInteger
+import java.security.MessageDigest
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -76,9 +78,16 @@ class AdapterAdminCustom(
                 }
             }
 
-            database.child(dataList[position].name.toString()).child("serverPass").setValue(tmp)
+            database.child(dataList[position].name.toString()).child("serverPass").setValue(encryptPassword(tmp))
             database.child(dataList[position].name.toString()).child("clientPass").setValue("null")
             database.child(dataList[position].name.toString()).child("status").setValue(0)
+
+            //The password only appear once and can not be retrieved again
+            Toast.makeText(
+                parentFragment.context,
+                "Device ${dataList[position].name} password is: $tmp",
+                Toast.LENGTH_LONG
+            ).show()
 
             /**
              * Update time DateOn
@@ -102,10 +111,12 @@ class AdapterAdminCustom(
             holder.btnTurnOff.visibility = View.INVISIBLE
         }
 
+
+
         /**
          * When pressed the btnTurnOn, checked if status is ON yet, then pushed to database
          */
-        holder.btnTurnOn.setOnClickListener() {
+        holder.btnTurnOn.setOnClickListener {
             if (dataList[position].serverPass == dataList[position].clientPass && dataList[position].serverPass != "null") {
                 database =
                     FirebaseDatabase.getInstance().getReference("Device")               //Initialize
@@ -134,6 +145,8 @@ class AdapterAdminCustom(
             }
         }
 
+
+
         /**
          * When pressed the btnTurnOff, pushed status OFF to database
          */
@@ -152,6 +165,10 @@ class AdapterAdminCustom(
         }
     }
 
+    fun turnOnCharger(){
+
+    }
+
     override fun getItemCount(): Int = dataList.size
 
     fun updateData(newDatalist: ArrayList<Device>) {
@@ -164,4 +181,30 @@ class AdapterAdminCustom(
         notifyDataSetChanged()
     }
 
+
+    /**
+     * Encrypt the input password and push to the database
+     */
+    @SuppressLint("GetInstance")
+    fun encryptPassword(password : String) : String{
+        var hashValue = ""
+        try {
+            // Static getInstance method is called with hashing MD5
+            val mMessageDigest = MessageDigest.getInstance("MD5")
+
+            //Update method simply appends the input byte password array to the current tempArray of the MessageDigestSpi abstract class.
+            //-->Updates the digest using the specified array of bytes, starting at the specified offset.
+            mMessageDigest.update(password.toByteArray(),0,password.length)
+
+            //BigInteger convert Byte array into signum representation
+            //Then convert message to hex value
+            hashValue = BigInteger(1, mMessageDigest.digest()).toString(16)
+
+            println(hashValue)
+        }catch (e: Exception){
+
+        }
+
+        return hashValue
+    }
 }
