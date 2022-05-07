@@ -13,6 +13,9 @@ import com.example.gst.trainingcourse.iotcharger.R
 import com.example.gst.trainingcourse.iotcharger.model.Device
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.math.BigInteger
 import java.security.MessageDigest
 import java.text.SimpleDateFormat
@@ -111,8 +114,6 @@ class AdapterAdminCustom(
             holder.btnTurnOff.visibility = View.INVISIBLE
         }
 
-
-
         /**
          * When pressed the btnTurnOn, checked if status is ON yet, then pushed to database
          */
@@ -165,10 +166,6 @@ class AdapterAdminCustom(
         }
     }
 
-    fun turnOnCharger(){
-
-    }
-
     override fun getItemCount(): Int = dataList.size
 
     fun updateData(newDatalist: ArrayList<Device>) {
@@ -178,7 +175,9 @@ class AdapterAdminCustom(
     }
 
     private fun updateAdapter() {
-        notifyDataSetChanged()
+        GlobalScope.launch(Dispatchers.Main) {
+            notifyDataSetChanged()
+        }
     }
 
 

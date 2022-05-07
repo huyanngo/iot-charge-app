@@ -2,7 +2,6 @@ package com.example.gst.trainingcourse.iotcharger
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
@@ -11,13 +10,10 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.example.gst.trainingcourse.iotcharger.constant.CONSTANT
-import com.example.gst.trainingcourse.iotcharger.model.Account
 import com.example.gst.trainingcourse.iotcharger.databinding.ActivityMapsBinding
-import com.example.gst.trainingcourse.iotcharger.model.Device
 import com.example.gst.trainingcourse.iotcharger.model.LocationStore
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -33,7 +29,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityMapsBinding
 
     private lateinit var database: DatabaseReference
-    private var storeList : ArrayList<LocationStore> = arrayListOf()
+    private var storeList: ArrayList<LocationStore> = arrayListOf()
 
     private var currentLocation: Location? = null
     private lateinit var latLng: LatLng
@@ -79,7 +75,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         googleMap.addMarker(markerOption)
 
         //Test the marker
-        for (store in storeList){
+        for (store in storeList) {
             val storeLatLng = LatLng(store.latitude, store.longtitude)
 
             val markerStoreOption = MarkerOptions().position(storeLatLng).title("IotCharge")

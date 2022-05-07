@@ -14,11 +14,11 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.gst.trainingcourse.iotcharger.R
-import com.example.gst.trainingcourse.iotcharger.model.Device
 import com.example.gst.trainingcourse.iotcharger.adapter.AdapterAdminCustom
 import com.example.gst.trainingcourse.iotcharger.databinding.FragmentAdminScreenBinding
 import com.example.gst.trainingcourse.iotcharger.dialogfragment.AddAccountDialogFragment
 import com.example.gst.trainingcourse.iotcharger.dialogfragment.AddDeviceDialogFragment
+import com.example.gst.trainingcourse.iotcharger.model.Device
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -33,8 +33,9 @@ class AdminFragment : Fragment() {
     private var runnable: Runnable? = null
     private var delay = 3000
 
-    private var timeLimitOn = 1                       //Time limit for each charger on (Minutes)
-    private var timeLimitPass = 30                       //Time limit for each password available (Seconds)
+    private var timeLimitOn = 2                         //Time limit for each charger on (Minutes)
+    private var timeLimitPass =
+        30                       //Time limit for each password available (Seconds)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -142,6 +143,28 @@ class AdminFragment : Fragment() {
         })
     }
 
+    fun checkOnCharger() {
+        for (position in dataList.indices) {
+            if (dataList[position].serverPass == dataList[position].clientPass && dataList[position].serverPass != "null" && dataList[position].status == 0) {
+                database =
+                    FirebaseDatabase.getInstance().getReference("Device")               //Initialize
+
+                database.child(dataList[position].name.toString()).child("status").setValue(1)
+
+                /**
+                 * Update time DateOn
+                 */
+                val calendar = Calendar.getInstance();
+                val simpleDateFormat = SimpleDateFormat("HH:mm:ss")
+                val date = simpleDateFormat.format(calendar.time)
+
+                database.child(dataList[position].name.toString()).child("dateOn")
+                    .setValue(date.toString())
+
+                dataList[position].status = 1
+            }
+        }
+    }
 
     override fun onResume() {
         super.onResume()
@@ -153,6 +176,9 @@ class AdminFragment : Fragment() {
             mHandler.postDelayed(runnable!!, delay.toLong())
 
             checkConnectionAndTime()
+            if (binding.switchAuto.isChecked) {
+                checkOnCharger()
+            }
 
             Log.d("#resume", "${delay / 1000} second has passed")
         }.also { runnable = it }, delay.toLong())

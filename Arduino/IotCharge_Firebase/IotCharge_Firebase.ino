@@ -4,8 +4,8 @@
 // Connect to Firebase and Wifi.
 #define FIREBASE_HOST "iotcharger-f97bc-default-rtdb.firebaseio.com"
 #define FIREBASE_AUTH "bauQSjrsTgJjxAeHSGUOMid7FWt6ky5WjsqKfl79"
-#define WIFI_SSID "Khanh Mai"
-#define WIFI_PASSWORD "20052111"
+#define WIFI_SSID "ESP8266 Connect"
+#define WIFI_PASSWORD "12345678"
 
 int statusD1 = 0;
 int statusD2 = 0;
@@ -57,9 +57,7 @@ void loop() {
   }
 
 
-
-
-  
+ 
   //Repeatedly check the Status of Device 2
   if (Firebase.getInt(fb,"Device/2/status")){
     if(fb.dataType() == "int"){
@@ -76,8 +74,6 @@ void loop() {
     Serial.println(fb.errorReason());
     Serial.println("Failed");
   }
-
-
 
 
   
@@ -100,8 +96,6 @@ void loop() {
 
 
 
-
-  
   //Repeatedly check the Status of Device 4
   if (Firebase.getInt(fb,"Device/4/status")){
     if(fb.dataType() == "int"){
